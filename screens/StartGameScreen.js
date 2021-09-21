@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    Button,
-    TouchableWithoutFeedback,
-    Keyboard,
     Alert,
+    Button,
+    Keyboard,
+    StyleSheet,
+    Text,
+    TouchableWithoutFeedback,
+    View,
 } from "react-native";
 import Card from "../components/Card";
 import Input from "../components/Input";
@@ -41,7 +40,7 @@ export default function StartGameScreen(props) {
         setConfirmed(true);
         setSelectedNumber(chosenNumber);
         setEnteredValue("");
-        Keyboard.dismiss()
+        Keyboard.dismiss();
     };
     let confirmedOutput;
     if (confirmed) {
@@ -49,7 +48,10 @@ export default function StartGameScreen(props) {
             <Card style={styles.summaryContainer}>
                 <Text>Número escogido</Text>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title="Iniciar juego" />
+                <Button
+                    title="Iniciar juego"
+                    onPress={() => props.onStartGame(selectedNumber)}
+                />
             </Card>
         );
     }
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginVertical: 10,
+        fontFamily: "open-sans-bold",
     },
     inputContainer: {
         width: 300,
@@ -126,6 +129,6 @@ const styles = StyleSheet.create({
     },
     summaryContainer: {
         marginTop: 20,
-        alignItems:'center'
+        alignItems: "center",
     },
 });
